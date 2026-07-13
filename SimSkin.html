@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const usuarioAtual = localStorage.getItem("UsuarioLocal");
+    const usuarioRef = ref(db, usuarioAtual);
+        
+    window.enviarTexto = function() {
+        update(usuarioRef, {
+            Skin: "LinnPadrão"
+        });
+        window.location.href = "SimPortal.html"
+}; 
+    window.enviarLinnAdolesente = function() {
+        update(usuarioRef, {
+            Skin: "LinnAdolecente"
+        });
+        window.location.href = "SimPortal.html"
+}; 
+    window.enviarLinnDivonico = function() {
+        update(usuarioRef, {
+            Skin: "LinnCute"
+        });
+        window.location.href = "SimPortal.html"
+}; 
+    window.enviarLinnCriança = function() {
+        update(usuarioRef, {
+            Skin: "LinnCriança"
+        });
+        window.location.href = "SimPortal.html"
+}; 
+    window.enviarTorajoPadrão = function() { 
+        update(usuarioRef, {
+            Skin: "TorajoPadrão"
+        });
+        window.location.href = "SimPortal.html"
+    };
+    window.enviarTorajoDivo = function() { 
+        update(usuarioRef, {
+            Skin: "TorajoDivo"
+        });
+        window.location.href = "SimPortal.html"
+    }; 
+    window.enviarTorajoDePijama = function() { 
+        update(usuarioRef, {
+            Skin: "TorajoDePijama"
+        });
+        window.location.href = "SimPortal.html"
+    }; 
+    window.enviarTorajoTomandoCafé = function() { 
+        update(usuarioRef, {
+            Skin: "TorajoTomandoCafé"
+        });
+        window.location.href = "SimPortal.html"
+    };
+    window.enviarZulmiPadrão = function() { 
+        update(usuarioRef, {
+            Skin: "ZulmiPadrão"
+        });
+        window.location.href = "SimPortal.html"
+    }; 
+    window.enviarZulmiCute = function() { 
+        update(usuarioRef, {
+            Skin: "ZulmiCute"
+        });
+        window.location.href = "SimPortal.html"
+    };
+    window.enviarZulmiAdolencente = function() { 
+        update(usuarioRef, {
+            Skin: "ZulmiAdolencente"
+        });
+        window.location.href = "SimPortal.html"
+    };
+    window.enviarZulmiSendoZulmi = function() { 
+        update(usuarioRef, {
+            Skin: "ZulmiSendoZulmi"
+        });
+        window.location.href = "SimPortal.html"
+    };  
+    window.enviarY2Kbr = function() { 
+        update(usuarioRef, {
+            Skin: "Y2Kbr"
+        });
+        window.location.href = "SimPortal.html"
+    };  
+</script>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+        </div>
+    </div>
+    <h1>Selecione a sua foto de perfil/Skin do sim</h1>
+    <div class="DivComFundo">
+        <h2 class="Cursive">Mundo Torajo</h2>
+        <h2 class="Cursive">Linn</h2>
+        <div class="LadoALado">
+            <img onclick="enviarTexto()" src="img/Foto de perfil Linn.JPG" class="imgCatalogo" alt="Foto de perfil/Skin do Mundo Torajo Linn">
+            <img onclick="enviarLinnAdolesente()" src="img/Foto de Perfil Linn Adolescente.jpg" class="imgCatalogo" alt="Foto de perfil/Skin do Mundo Torajo Linn Adolescente">
+            <img onclick="enviarLinnDivonico()" src="img/Foto de perfil do Linn.png" class="imgCatalogo" alt="Foto de perfil/Skin do Mundo Torajo Linn Divonico">
+            <img onclick="enviarLinnCriança()" src="img/Foto de perfil do Linn Criaça.jpg" class="imgCatalogo" alt="Foto de perfil/Skin do Mundo Torajo Linn Adolescente">
+        </div>
+        <h2 class="Cursive">Torajo</h2>
+        <div class="LadoALado">
+            <img onclick="enviarTorajoPadrão()" src="img/Foto de perfil do Torajo.png" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo Torajo">
+            <img onclick="enviarTorajoDivo()" src="img/Foto de perfil do Torajo Divo.png" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo divo">
+            <img onclick="enviarTorajoDePijama()" src="img/Foto de perfil do Torajo de pijama.png" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo de pijama">
+            <img onclick="enviarTorajoTomandoCafé()" src="img/Foto de perfil do Torajo bebendo cafe.jpg" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo tomando café">
+        </div>
+        <h2 class="Cursive">Zulmi</h2>
+        <div class="LadoALado">
+            <img onclick="enviarZulmiPadrão()" src="img/Foto de perfil da Zulmi.jpg" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo da Zulmi">
+            <img onclick="enviarZulmiCute()" src="img/Foto de perfil da Zulmi Cute.jpg" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo da Zulmi Cute">
+            <img onclick="enviarZulmiAdolencente()" src="img/Foto de perfil da Zulmi Adolecente.jpg" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo da Zulmi adolecente">
+            <img onclick="enviarZulmiSendoZulmi()" src="img/Foto de perfil da Zulmi sendo Zulmi.jpg" class="imgCatalogo" alt="Foto de perfil/skin do Mundo Torajo da Zulmi sendo Zulmi">
+        </div>
+        <button class="CursiveP" onclick="window.location.href='SkinsTorajo.html'">Mais</button>
+    </div>
+    <h2 class="Cursive">Foto de perfil Y2K</h2>
+    <div class="DivComFundo">
+        <h2 class="Cursive">Brasil Y2K</h2>
+        <div class="LadoALado">
+            <img onclick="enviarY2Kbr()" src="img/Foto de perfil Brasil Y2k.png" class="imgCatalogo" alt="Foto de perfil/Skin do Mundo Torajo Linn">
+        </div>
+    </div>
+</body>
+</html>

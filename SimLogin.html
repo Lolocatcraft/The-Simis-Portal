@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal</title>
+</head>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+        </div>
+    </div>
+    <h1>Menu Logar em um sim</h1>
+    <p class="CursiveP">Olá, coloque o nome do seu sim<br>Para você poder acessar</p>
+    <input class="CursiveP" type="text" id="textoInput" placeholder="Nome do seu sim">
+    <button class="CursiveP" onclick="enviarTexto()">Confirmar Nome</button>
+    <div>
+        <a class="CursiveP" href="Sim.html">Não tenho um sim</a>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+            authDomain: "teste-6c903.firebaseapp.com",
+            databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+            projectId: "teste-6c903",
+            storageBucket: "teste-6c903.firebasestorage.app",
+            messagingSenderId: "533175479741",
+            appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Função de login
+        window.enviarTexto = function() {
+            const valor = document.getElementById("textoInput").value.trim();
+            if (!valor) {
+                alert("Digite o nome do seu sim!");
+                return;
+            }
+
+            const usuarioRef = ref(db, valor);
+
+            onValue(usuarioRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    // Se o usuário existe, salva no localStorage
+                    localStorage.setItem("UsuarioLocal", valor);
+                    localStorage.setItem("UsuarioLocalPerm", valor);
+                    // Vai para a página principal
+                    window.location.href = "SimPortal.html"
+                } else {
+                    alert("Esse sim não existe. Crie um novo.");
+                }
+            }, { onlyOnce: true });
+        }
+    </script>
+</body>
+</html>

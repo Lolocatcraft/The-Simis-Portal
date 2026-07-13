@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal | Sims Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const Bitext = document.querySelector("#BlicliografiaText");
+        const StatusText = document.querySelector("#Status");
+        const Img = document.querySelector("#ImgFotoPerfil");
+        const UserText = document.querySelector("#YourName")
+
+        // Pega o usuário atual
+        const usuarioAtual = localStorage.getItem("UsuarioLocal");
+        const usuarioRef = ref(db, usuarioAtual);
+
+        onValue(usuarioRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) return;
+
+            // Atualiza status e bibliografia
+            StatusText.innerHTML = data.Status || "";
+            Bitext.innerHTML = data.Bibliografia || "";
+            UserText.innerHTML ="Olá " + usuarioAtual;
+
+        // Mapa de skins → imagens
+        const skins = {
+            "LinnPadrão": "img/Foto de perfil Linn.JPG",
+            "LinnAdolecente": "img/Foto de Perfil Linn Adolescente.jpg",
+            "LinnCute": "img/Foto de perfil do Linn.png",
+            "LinnCriança": "img/Foto de perfil do Linn Criaça.jpg",
+            "TorajoPadrão": "img/Foto de perfil do Torajo.png",
+            "TorajoDivo": "img/Foto de perfil do Torajo Divo.png",
+            "TorajoDePijama": "img/Foto de perfil do Torajo de pijama.png",
+            "TorajoTomandoCafé": "img/Foto de perfil do Torajo bebendo cafe.jpg",
+            "ZulmiPadrão": "img/Foto de perfil da Zulmi.jpg",
+            "ZulmiCute": "img/Foto de perfil da Zulmi Cute.jpg",
+            "ZulmiAdolencente": "img/Foto de perfil da Zulmi Adolecente.jpg",
+            "ZulmiSendoZulmi": "img/Foto de perfil da Zulmi sendo Zulmi.jpg",
+            "MorajoCute": "img/Foto de Perfil do Morajo Cute.webp",
+            "MorajoPadrão": "img/Foto de perfil do Morajo.jpg",
+            "MorajoAdolesente": "img/Foto de Perfil do Morajo Adolecente.jpg",
+            "MorajoAnime": "img/Foto de Perfil Morajo Anime.jpg",
+            "Y2Kbr": "img/Foto de perfil Brasil Y2k.png"
+        };
+
+        // Aplica a imagem correspondente
+        if (skins[data.Skin]) {
+            Img.src = skins[data.Skin];
+        }
+        window.Criar1 = function() {
+            update(usuarioRef, {
+            Paginas: {
+                Criar1: {
+                    Tipo: "",
+                    Titulo: "",
+                    TextoApresetação: ""
+                }
+            }
+        })
+            window.location.href = "CriarPortal.html"
+        }
+     });
+});
+
+    // Função para enviar text
+</script>
+<script>
+    function verificarPosse() {
+        if (localStorage.getItem("UsuarioLocal") == localStorage.getItem("UsuarioLocalPerm")) {
+            window.location.href = "SimEditor.html"
+        } else {
+            alert("Vc não alterar coisas nas paginas de outras pessoas")
+        }
+    }
+</script>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+            <button class="imglogo" onclick="verificarPosse()">Modo Editor</button>
+        </div>
+    </div>
+    <div class="LadoALado">
+        <img src="" class="imgFotodePerfil" id="ImgFotoPerfil" alt="Sua foto de perfil">
+        <div class="DivComFundo">
+            <h1 id="YourName" class="Cursive"></h1>
+            <p class="CursiveP">Essa é a sua página <br> onde vc pode personalizar do jeito que quizer</p>
+            <h1 class="Cursive">bibliografia</h1>
+            <p class="CursiveP" id="BlicliografiaText">Coloque aqui a sua bibliografia no modo editor</p>
+            <h2 class="CursiveP" id="Status">Status: Online</h2>
+        </div>
+    </div>
+    <div class="DivComFundo">
+        <div class="LadoALado">
+            <video onclick="Criar1()" src="vÍDEOS/Share.webm" autoplay loop class="imgCatalogo"></video>
+            <video src="vÍDEOS/Share.webm" autoplay loop class="imgCatalogo"></video>
+            <video src="vÍDEOS/Share.webm" autoplay loop class="imgCatalogo"></video>
+            <video src="vÍDEOS/Share.webm" autoplay loop class="imgCatalogo"></video>
+        </div>
+    </div>
+</body>
+</html>
