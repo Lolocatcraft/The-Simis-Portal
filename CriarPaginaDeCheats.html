@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal | Sims Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        // Pega o usuário atual
+        const usuarioAtual = localStorage.getItem("UsuarioLocal");
+        const usuarioRef = ref(db, usuarioAtual);
+
+
+        onValue(usuarioRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) return;
+
+            // Atualiza status e bibliografia
+            
+        window.Criar1 = function() {
+            const nome = document.getElementById("textoInput").value;
+            update(usuarioRef, {
+                Paginas: {
+                    Criar1: {
+                        Tipo: "PaginaDeCheats",
+                        Titulo: nome
+                    }
+                }
+            });
+        }
+        window.Criar2 = function() {
+            const nome = document.getElementById("textoInput").value;
+            const nome2 = document.getElementById("DescriçãoInput").value;
+            update(usuarioRef, {
+                Paginas: {
+                    Criar1: {
+                        Tipo: "PaginaDeCheats",
+                        Titulo: nome,
+                        TextoApresetação: nome2
+                    }
+                }
+            });
+        }
+        window.Criar3 = function() {
+            const nome = document.getElementById("textoInput").value;
+            const nome2 = document.getElementById("DescriçãoInput").value;
+            update(usuarioRef, {
+                Paginas: {
+                    Criar1: {
+                        Tipo: "PaginaDeCheats",
+                        Titulo: nome,
+                        TextoApresetação: nome2
+                    }
+                }
+            });
+        }
+        
+     });
+});
+
+    // Função para enviar text
+</script>
+<script>
+    function verificarPosse() {
+        if (localStorage.getItem("UsuarioLocal") == localStorage.getItem("UsuarioLocalPerm")) {
+            window.location.href = "SimEditor.html"
+        } else {
+            alert("Vc não alterar coisas nas paginas de outras pessoas")
+        }
+    }
+</script>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+            <button class="imglogo" onclick="verificarPosse()">Modo Editor</button>
+        </div>
+    </div>
+    
+    <h1 id="" class="Cursive">Criar uma página de cheats</h1>
+
+    <h2 class="Cursive">Passo a Passo</h2>
+    <p class="CursiveP">Ok vc quer criar uma página de cheats<br>Vamos fazer o passo a passo</p>
+    <p class="CursiveP">Primeiro tem o Titulo por favor coloque o titulo da sua pagina no campo abaixo</p>
+    <input class="CursiveP" type="text" id="textoInput" placeholder="Titulo da sua Pagina"> 
+    <button class="CursiveP" onclick="Criar1()">Confirmar Nome</button>
+
+    <h2 class="Cursive">Passo 2</h2>
+    <p class="CursiveP">Agora vc ira colocar a descrição do seu cheat</p>
+    <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Descrição">
+    <button class="CursiveP" onclick="Criar2()">Confirmar Descrição</button>
+
+    <h2 class="Cursive">Passo 3</h2>
+    <p class="CursiveP">Agora vc ira colocar o passo a passo para as pessoas fazer o seu cheat <br> coloque os passos abaixo</p>
+    
+    <div class="CursiveP">
+        <h3 class="Cursive">Passo1</h3>
+        <input class="CursiveInput1" type="text" id="Passo1Input" placeholder="Passo 1">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3">
+        <button onclick="Criar3()" class="CursiveP">Confirmar</button>
+
+        <h3 class="Cursive">Passo2</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 2">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo3</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 3">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo4</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 4">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo5</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 5">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo6</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 6">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo7</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 6">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo8</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 8">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+
+        <h3 class="Cursive">Passo9</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 9">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3">
+
+        <h3 class="Cursive">Passo10</h3>
+        <input class="CursiveInput1" type="text" id="DescriçãoInput" placeholder="Passo 10">
+        <h4 class="Cursive">Subpassos(opcional)</h4>
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 1"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subapsso 2"> 
+        <input class="CursiveP" type="text" id="textoInput" placeholder="Subpasso 3"> 
+    </div>
+</body>
+</html>

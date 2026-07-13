@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal | Raises The Simis</title>
+</head>
+<style>
+    body {
+       background-color: #e1fee1;
+    }
+</style>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const textoRef = ref(db, "texto");
+    const Usuario = localStorage.getItem("UsuarioLocalPerm");
+
+    // Função para enviar texto
+    window.enviarTexto = function() {
+        const valor = document.getElementById("textoInput").value;
+        set(textoRef, Usuario + " :" + valor);
+    }
+
+    // Escuta mudanças e atualiza h1
+    onValue(textoRef, (snapshot) => {
+        const valor = snapshot.val();
+        document.getElementById("titulo").innerText = valor || "";
+    });
+</script>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <h1 class="">The Simis Portal.com</h1>
+        </div>
+    </div>
+    <div class="LadoALado">
+        <div>
+            <h1 class="Cursive">Raises The Simis</h1>
+            <h2 class="Cursive">Casa</h2>
+            <p class="CursiveP">Um condominio de casa cheido de vida <br> com um cinema <br> duas casas <br> um lago com chafarizes <br> e piscina em todas as casas <br> tá esperando oque <br> Adicinione já <br> Para adiciona-lo no seu jogo clique no botão e adicione na sua galeria</p>
+            <button class="Cursive" onclick="window.location.href='https://www.ea.com/pt-br/games/the-sims/the-sims-4/pc/gallery/6F15C6CDF4F54DF7A88D554BCEE3976A'">Ir Para a Galeria</button>
+            <h1>Comentarios :)</h1>
+            <input type="text" id="textoInput" placeholder="Comente algo...">
+            <button onclick="enviarTexto()">Comentar</button>
+            <h1 class="CursiveP" id="titulo"></h1>
+        </div>
+        <div>
+            <img class="imgComodo" onclick="window.location.href='CasaRaisesTheSimis.html'" src="img/Casa 1.PNG" alt="Casa: Foto das casas do raises the simis">    
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal | PodSims</title>
+</head>
+<style>
+    body {
+       background-color: #e1fee1;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <h1 class="">The Simis Portal.com</h1>
+        </div>
+    </div>
+    <div class="LadoALado">
+        <div>
+            <img class="imgCatalogo" src="img/PodSims.PNG">
+            <img id="Like" onclick="LikeSims()" class="imglogo" src="img/Like.JPG">
+            <img onclick="" class="imglogo" src="img/Deslike.JPG">
+            <h1>Pod Smis | Primeira temporada</h1>
+            <button onclick="window.location.href='PodSimis.html'">Mostrar Primeira temporada</button>
+            <button>Mostrar Segunda temporada</button>
+            <h1 onclick="Play()" id="Ep1" class="CursiveP">Capitulo 1 | PARANORMAL no The Simis 4</h1>
+            <h1 id="Ep2" class="CursiveP">Capitulo 2 | MODS E CP'S usar ou não usar</h1>
+            <h1 id="Ep3" class="CursiveP">Capitulo 3 | Historias com The Simis (Spoiler: Tudo culpa do Lucas kkkkk)</h1>
+            <h1 id="Ep4" class="CursiveP">Capitulo 4 | Console x PC (FEAT.Valeria do canal <a href="https://www.youtube.com/@Simszi/videos">SIMSZI</a></h1>
+            <h1 id="Ep5" class="CursiveP">Capitulo 5 | The Simis 5 Promete caivar entrega ovo</h1>
+            <h1 id="Ep6" class="CursiveP">Capitulo 6 | PARALIVES Sera o fim do The Simis? (Feat: Vanessa do canal <a href="https://www.youtube.com/c/GirafaRosa">Girafa Rosa</a>)</h1>
+            <h1 id="Ep7" class="CursiveP">Capitulo 7 | Simstagram Tudo culpa da Kaila! (Feat: <a href="https://www.youtube.com/@MilenaCipriano">Milena Cipriano</a> e <a href="https://www.youtube.com/@estelarjones3760">Estelar Jones</a></h1>
+            <h1 id="Ep8" class="CursiveP">Capitulo 8 | Modo construção (Feat: <a href="https://www.youtube.com/@Mawina">Mawina</a>, <a href="https://www.youtube.com/@ArquitetoPlay">Lucas Arquiteto Play</a> <a href="https://www.youtube.com/channel/UCG2rJqvJaYv13jdx4QyJ8_g">Jeff Sims Play</a></h1>
+            <h1 id="Ep9" class="CursiveP">Capitulo 9 | Luz, câmera.... Ação! Series e Gameplays | The Simis 4</h1>
+            <h1 id="Ep10" class="CursiveP">Capitulo 10 | Comunidade Simmer (Feat: <a href="https://www.youtube.com/channel/UCG2rJqvJaYv13jdx4QyJ8_g">Jeff Sims Play</a>, Marcia, Bruna, Diegoe e Vitoria(Não achei o canal deles) </h1>
+            <h1 id="Fin" class="CursiveP">Fim da Primeira temportada</h1>
+            <h1 id="Cast" class="Cursive">Pod Simis Cast Primeira temporada: <a href="https://www.youtube.com/@Simszi/videos">SIMSZI</a>, <a href="https://www.youtube.com/c/GirafaRosa">Girafa Rosa</a>, Marcia, Bruna, Diegoe e Vitoria(Não achei o canal deles), <a href="https://www.youtube.com/@Mawina">Mawina</a>, <a href="https://www.youtube.com/@ArquitetoPlay">Lucas Arquiteto Play</a> <a href="https://www.youtube.com/channel/UCG2rJqvJaYv13jdx4QyJ8_g">Jeff Sims Play</a></h1>
+            <h1 class="Cursive">Pod Sims Todos os Direitos reserdos</h1>
+            <h1 class="Cursive">Site feito por fã: <a href="https://www.youtube.com/@lolocatcarft-nm1vg">Chanel HiFor You</a> Vai lá da uma passadinha :)</h1>
+            <h1 class="Cursive">:) :):) :) :) :0 :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)</h1>
+        </div>
+    </div>
+    <footer>
+        <audio id="Som" controls src="Soms/PodSimsIntrodução.m4a"></audio>
+    </footer>
+    <script>
+        function Play() {
+            const som = document.querySelector("#Som");
+            som.setAttribute("src", "Soms/PodSmisEp1.m4a");
+            localStorage.setItem("PodcastOuvido", "Capitulo1")
+            som.play();      
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const Ep = localStorage.getItem("PodcastOuvido");
+            const som = document.querySelector("#Som");
+             // Verifica qual valor está salvo e troca o src
+            if (Ep === "Capitulo1") {
+               som.setAttribute("src", "Soms/PodSmisEp1.m4a");
+               som.play(); 
+            }else {
+                som.setAttribute("src", "Soms/PodSimsIntrodução.m4a");
+            }
+         });
+    </script>
+    <script src="script.js"></script>
+</body>

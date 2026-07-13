@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase   
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const raizRef = ref(db);
+      
+    async function listarNomesEStatus() {
+  try {
+    const snapshot = await get(raizRef);
+
+    if (snapshot.exists()) {
+      const dados = snapshot.val();
+
+      let i = 1;
+      for (const nome in dados) {
+        const jogador = dados[nome];
+
+        if (i <= 5) {
+          localStorage.setItem("Skin" + i, jogador.Skin);
+          localStorage.setItem("Name" + i, jogador.Apelido);
+          i++;
+        }
+      }
+    } else {
+      console.log("Nenhum nó encontrado.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+    
+    document.addEventListener("DOMContentLoaded", function() {
+            listarNomesEStatus();
+            localStorage.setItem("UsuarioLocal", "");
+    })
+    
+</script>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+        </div>
+    </div>
+    <h1 class="">Cheats que podem te ajudar hoje</h1>
+    <div class="LadoALado">
+        <img onclick="window.location.href='CheatIIDinheiroInfinitos.html'" class="imgCatalogo" src="img/CheatInfinitos Dienheiros.png">   
+        <img onclick="window.location.href='CheatDeCarros.html'" class="imgCatalogo" src="img/Cheat Carros.png">
+        <button>Mais cheats</button>
+    </div>
+    <h1>Smis/Pessoas Em Alta</h1>
+    <div class="LadoALado1">
+        <img onclick="GoToSimis()" class="imgPod" id="img1" src="" alt="Skin 1">
+        <img onclick="GoToSimis2()" class="imgPod" id="img2" src="" alt="Skin 2">
+        <img onclick="GoToSimis3()" class="imgPod" id="img3" src="" alt="Skin 3">
+        <img onclick="GoToSimis4()" class="imgPod" id="img4" src="" alt="Skin 4">
+        <img onclick="GoToSimis5()" class="imgPod" id="img5" src="" alt="Skin 5">
+    </div>
+    <h1 class="">Você Gostou</h1>
+    <div class="LadoALado">
+        <img id="GostouImg1" onclick="" class="imgCatalogo" src="">
+    </div>
+    <h1>Casas Para os seus simis</h1>
+    <div class="LadoALado">
+        <img class="imgCatalogo" onclick="window.location.href='CasaRaisesTheSimis.html'" src="img/Casa 1.PNG" alt="Casa: Raises The Simis">
+    </div>
+    <h1 class="">Comodos</h1>
+    <div class="LadoALado">
+        <img class="imgCatalogo" onclick="window.location.href='ComodoUmquartoDeFamilia.html'" src="img/Comodo 1.PNG" alt="Comodo: Um quarto de Familia">
+    </div>
+    <script>
+        function GoToSimis() {
+             const Nome = localStorage.getItem("Name1");
+            localStorage.setItem("UsuarioLocal", Nome);
+            window.location.href = "SimPortal.html"
+        }
+        function GoToSimis2() {
+             const Nome = localStorage.getItem("Name2");
+            localStorage.setItem("UsuarioLocal", Nome);
+            window.location.href = "SimPortal.html"
+        } 
+        function GoToSimis3() {
+             const Nome = localStorage.getItem("Name3");
+            localStorage.setItem("UsuarioLocal", Nome);
+            window.location.href = "SimPortal.html"
+        } 
+        function GoToSimis4() {
+             const Nome = localStorage.getItem("Name4");
+            localStorage.setItem("UsuarioLocal", Nome);
+            window.location.href = "SimPortal.html"
+        }
+        function GoToSimis5() {
+             const Nome = localStorage.getItem("Name5");
+            localStorage.setItem("UsuarioLocal", Nome);
+            window.location.href = "SimPortal.html"
+        } 
+
+
+       document.addEventListener("DOMContentLoaded", function() {
+            const img = document.getElementById("GostouImg1");
+            
+            // Pega o valor salvo em localStorage
+            const gostou = localStorage.getItem("Gostou");
+
+             // Verifica qual valor está salvo e troca o src
+            if (gostou === "DinheiroInfinito") {
+            img.setAttribute("src", "img/CheatInfinitos Dienheiros.png");
+            img.setAttribute("onclick", "window.location.href='CheatIIDinheiroInfinitos.html'");
+            }
+            if (gostou === "Cars") {
+            img.setAttribute("src", "img/Cheat Carros.png");
+            img.setAttribute("onclick", "window.location.href='CheatDeCarros.html'");
+            }
+            if (gostou === "PodSims") {
+                img.setAttribute("src", "img/PodSims.PNG");
+                img.setAttribute("onclick", "window.location.href='PodSimis.html'");
+            }
+
+
+            const skins = {
+                "LinnPadrão": "img/Foto de perfil Linn.JPG",
+                "LinnAdolecente": "img/Foto de Perfil Linn Adolescente.jpg",
+                "LinnCute": "img/Foto de perfil do Linn.png",
+                "LinnCriança": "img/Foto de perfil do Linn Criaça.jpg",
+                "TorajoPadrão": "img/Foto de perfil do Torajo.png",
+                "TorajoDivo": "img/Foto de perfil do Torajo Divo.png",
+                "TorajoDePijama": "img/Foto de perfil do Torajo de pijama.png",
+                "TorajoTomandoCafé": "img/Foto de perfil do Torajo bebendo cafe.jpg",
+                "ZulmiPadrão": "img/Foto de perfil da Zulmi.jpg",
+                "ZulmiCute": "img/Foto de perfil da Zulmi Cute.jpg",
+                "ZulmiAdolencente": "img/Foto de perfil da Zulmi Adolecente.jpg",
+                "ZulmiSendoZulmi": "img/Foto de perfil da Zulmi sendo Zulmi.jpg",
+                "MorajoCute": "img/Foto de Perfil do Morajo Cute.webp",
+                "MorajoPadrão": "img/Foto de perfil do Morajo.jpg",
+                "MorajoAdolesente": "img/Foto de Perfil do Morajo Adolecente.jpg",
+                "MorajoAnime": "img/Foto de Perfil Morajo Anime.jpg",
+                "Y2Kbr": "img/Foto de perfil Brasil Y2k.png"
+            };
+
+            // Recupera os três valores do localStorage
+            const skin1 = localStorage.getItem("Skin1");
+            const skin2 = localStorage.getItem("Skin2");
+            const skin3 = localStorage.getItem("Skin3");
+            const skin4 = localStorage.getItem("Skin4");
+            const skin5 = localStorage.getItem("Skin5");
+
+            // Aplica nas imagens
+            if (skin1 && skins[skin1]) {
+                document.getElementById("img1").src = skins[skin1];
+            }
+            if (skin2 && skins[skin2]) {
+                document.getElementById("img2").src = skins[skin2];
+            }
+            if (skin3 && skins[skin3]) {
+                document.getElementById("img3").src = skins[skin3];
+            }
+            if (skin4 && skins[skin4]) {
+                document.getElementById("img4").src = skins[skin4];
+            }
+            if (skin4 && skins[skin5]) {
+                document.getElementById("img5").src = skins[skin5];
+            }
+        });
+    </script>
+</body>
+</html>

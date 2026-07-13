@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const textoRef = ref(db, "texto1");
+
+    // Função para enviar texto
+    window.enviarTexto = function() {
+        const valor = document.getElementById("textoInput").value;
+        set(textoRef, "Conta Não logada: " + valor);
+    }
+
+    // Escuta mudanças e atualiza h1
+    onValue(textoRef, (snapshot) => {
+        const valor = snapshot.val();
+        document.getElementById("titulo").innerText = valor || "";
+    });
+</script>
+<style>
+    body {
+       background-color: #e1fee1;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <h1 class="">The Simis Portal.com</h1>
+        </div>
+    </div>
+    <div class="LadoALado">
+        <div>
+            <h1 class="Cursive">Um quarto de Familia</h1>
+            <h2 class="Cursive">Comodo</h2>
+            <p class="CursiveP">Um Quarto simples <br> com duas camas <br> uma de casal e outra para uma criança ou adolecente <br> e para melhorar o comodo vem com um computador <br> Para colocalo no seu jogo clique no botão e adicione na sua galeria</p>
+            <button class="Cursive" onclick="window.location.href='https://www.ea.com/pt-br/games/the-sims/the-sims-4/gallery/item/UgvP%2FB%2F1SY6Xttp%2FPBaqlQ%3D%3D?from=brows'">Ir Para a Galeria</button>
+            <h1>Comentarios :)</h1>
+            <input type="text" id="textoInput" placeholder="Comente algo...">
+            <button onclick="enviarTexto()">Comentar</button>
+            <h1 class="CursiveP" id="titulo"></h1>
+        </div>
+        <div>
+            <img class="imgComodo" onclick="window.location.href='ComodoUmquartoDeFamilia.html'" src="img/Comodo 1.PNG" alt="Comodo: Um quarto de Familia">
+        </div>
+    </div>
+</body>
+</html>

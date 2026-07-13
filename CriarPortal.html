@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/TheSimisLogo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>The Simis Portal | Sims Portal</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    // Cole aqui suas credenciais do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAIvCwmmt1b5aiR-ICVLpri1tGNkHT9N2I",
+        authDomain: "teste-6c903.firebaseapp.com",
+        databaseURL: "https://teste-6c903-default-rtdb.firebaseio.com",
+        projectId: "teste-6c903",
+        storageBucket: "teste-6c903.firebasestorage.app",
+        messagingSenderId: "533175479741",
+        appId: "1:533175479741:web:8ab72892f6f5b0adbe76d4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const UserText = document.querySelector("#YourName");
+
+        // Pega o usuário atual
+        const usuarioAtual = localStorage.getItem("UsuarioLocal");
+        const usuarioRef = ref(db, usuarioAtual);
+
+        UserText.innerHTML ="Olá " + usuarioAtual;
+
+        onValue(usuarioRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) return;
+
+            // Atualiza status e bibliografia
+            
+        window.Criar1 = function() {
+            update(usuarioRef, {
+                Paginas: {
+                    Criar1: {
+                        Tipo: "PaginaDeCheats",
+                        Titulo: "",
+                        TextoApresetação: ""
+                    }
+            }
+            });
+            window.location.href = "CriarPaginaDeCheats.html"
+        }
+     });
+});
+
+    // Função para enviar text
+</script>
+<script>
+    function verificarPosse() {
+        if (localStorage.getItem("UsuarioLocal") == localStorage.getItem("UsuarioLocalPerm")) {
+            window.location.href = "SimEditor.html"
+        } else {
+            alert("Vc não alterar coisas nas paginas de outras pessoas")
+        }
+    }
+</script>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="Cabesalho">
+        <div class="LadoALado1">
+            <img onclick="window.location.href='index.html'" class="imglogo" src="img/TheSimisLogo.jpg">
+            <img onclick="window.location.href='Sim.html'" class="imglogo" src="img/Conta.png">
+            <button class="imglogo" onclick="verificarPosse()">Modo Editor</button>
+        </div>
+    </div>
+    
+    <h1 id="YourName" class="Cursive"></h1>
+
+    <p class="CursiveP">Bem Vindo(a) a página Criar <br> Onde vc pode criar <br> Paginas de Cheats, compartilhas suas casas da galeria do The Simis(Requer sites externos) <br> e muito mais <br> para começar clique em um dos botões para selecionar o tipo de pagina que vc quer</p>
+    <button onclick="Criar1()" class="CursiveP">Pagina de Cheats</button>
+</body>
+</html>
